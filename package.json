@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.19.3",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
     "@emotion/cache": "^11.7.1",
