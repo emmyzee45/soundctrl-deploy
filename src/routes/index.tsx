@@ -1,9 +1,9 @@
-import { Suspense, lazy, ElementType } from 'react';
-import { Navigate, useRoutes, useLocation } from 'react-router-dom';
+import { Suspense, lazy, ElementType } from "react";
+import { Navigate, useRoutes, useLocation } from "react-router-dom";
 // guards
-import useAuth from '../hooks/useAuth';
+import useAuth from "../hooks/useAuth";
 // layouts
-import MainLayout from '../layouts/main';
+import MainLayout from "../layouts/main";
 // import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 // guards
 // import GuestGuard from '../guards/GuestGuard';
@@ -12,7 +12,7 @@ import MainLayout from '../layouts/main';
 // config
 // import { PATH_AFTER_LOGIN } from '../config';
 // components
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen from "../components/LoadingScreen";
 
 // ----------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ const Loadable = (Component: ElementType) => (props: any) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isAuthenticated } = useAuth();
 
-  const isDashboard = pathname.includes('/dashboard') && isAuthenticated;
+  const isDashboard = pathname.includes("/dashboard") && isAuthenticated;
 
   return (
     <Suspense fallback={<LoadingScreen isDashboard={isDashboard} />}>
@@ -72,15 +72,17 @@ export default function Router() {
     //     { path: '*', element: <Navigate to="/404" replace /> },
     //   ],
     // },
-    
+
     {
-      path: '/',
+      path: "/",
       element: <MainLayout />,
       children: [
         { element: <HomePage />, index: true },
-        // { path: 'about-us', element: <About /> },
-        // { path: 'contact-us', element: <Contact /> },
-        // { path: 'faqs', element: <Faqs /> },
+        { path: "/search", element: <SearchPage /> },
+        { path: "/book", element: <BookPage /> },
+        { path: "/book-time", element: <BookTimePage /> },
+        { path: "/fan-profile", element: <FanProfilePage /> },
+        { path: "/fan-settings", element: <FanSettingsPage /> },
       ],
     },
     // { path: '*', element: <Navigate to="/404" replace /> },
@@ -94,4 +96,9 @@ export default function Router() {
 // const Register = Loadable(lazy(() => import('../pages/auth/Register')));
 
 // Main
-const HomePage = Loadable(lazy(() => import('../pages/Home')));
+const HomePage = Loadable(lazy(() => import("../pages/Home")));
+const SearchPage = Loadable(lazy(() => import("../pages/Search")));
+const BookPage = Loadable(lazy(() => import("../pages/Book")));
+const BookTimePage = Loadable(lazy(() => import("../pages/BookTime")));
+const FanProfilePage = Loadable(lazy(() => import("../pages/FanProfile")));
+const FanSettingsPage = Loadable(lazy(() => import("../pages/FanSettings")));

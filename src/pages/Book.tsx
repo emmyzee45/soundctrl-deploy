@@ -1,26 +1,30 @@
 // @mui
 import { styled } from "@mui/material/styles";
+
 // sections
-import { HomeHero, Questions, Subscribe, Trending } from "../sections/home";
+import { BookArtist, BookingHero, ExploreChat } from "../sections/book";
 
 // ---------------------------------------------------------------------
 
 const RootStyle = styled("div")(({ theme }) => ({
   height: "100%",
+}));
+
+const ContentStyle = styled("div")(({ theme }) => ({
   overflow: "hidden",
   position: "relative",
-  backgroundColor: "rgba(248, 248, 248, 1)",
 }));
 
 // ----------------------------------------------------------------------
 
-export default function HomePage() {
+export default function Book() {
   return (
     <RootStyle>
-      <HomeHero />
-      <Trending />
-      <Questions />
-      <Subscribe />
+      <BookingHero />
+      <ContentStyle>
+        <BookArtist />
+        <ExploreChat />
+      </ContentStyle>
     </RootStyle>
   );
 }
