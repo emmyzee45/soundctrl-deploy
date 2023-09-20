@@ -29,6 +29,11 @@ import TicketOne from "./images/ticket-1.png";
 import TicketTwo from "./images/ticket-2.png";
 import TicketThree from "./images/ticket-3.png";
 import User from "./images/user-avatar.png";
+import ArtistBenefits from "./images/artist-benefits-1.png";
+import ArtistBenefitsTwo from "./images/artist-benefits-2.png";
+import ArtistBenefitsThree from "./images/artist-benefits-3.png";
+import Payout from "./images/payout.png";
+import Time from "./images/time-setup.png";
 
 export { default as UploadIllustration } from "./illustration_upload";
 
@@ -64,4 +69,9 @@ export {
   TicketTwo,
   TicketThree,
   User,
+  ArtistBenefits,
+  ArtistBenefitsTwo,
+  ArtistBenefitsThree,
+  Payout,
+  Time,
 };

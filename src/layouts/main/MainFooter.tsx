@@ -37,15 +37,15 @@ export default function MainFooter() {
           ©2023 SOUNDCTRL TECH, INC. All rights reserved.
         </Typography>
         <Stack direction='row' spacing={3}>
-          <Stack spacing={2} direction='row'>
+          <Stack spacing={2} direction='row' alignItems='center'>
             <Icon icon='ri:instagram-fill' />
             <Typography variant='subtitle2'>Instagram</Typography>
           </Stack>
-          <Stack spacing={2} direction='row'>
+          <Stack spacing={2} direction='row' alignItems='center'>
             <Icon icon='mdi:twitter' />
             <Typography variant='subtitle2'>Twitter</Typography>
           </Stack>
-          <Stack spacing={2} direction='row'>
+          <Stack spacing={2} direction='row' alignItems='center'>
             <Icon icon='ic:baseline-discord' />
             <Typography variant='subtitle2'>Discord</Typography>
           </Stack>

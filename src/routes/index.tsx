@@ -83,6 +83,11 @@ export default function Router() {
         { path: "/book-time", element: <BookTimePage /> },
         { path: "/fan-profile", element: <FanProfilePage /> },
         { path: "/fan-settings", element: <FanSettingsPage /> },
+        { path: "/artist-home", element: <ArtistHomePage /> },
+        { path: "/invite", element: <InvitePage /> },
+        { path: "/artist-socials", element: <ArtistSocialsPage /> },
+        { path: "/artist-dashboard", element: <ArtistDashboardPage /> },
+        { path: "/artist-settings", element: <ArtistSettingsPage /> },
       ],
     },
     // { path: '*', element: <Navigate to="/404" replace /> },
@@ -102,3 +107,8 @@ const BookPage = Loadable(lazy(() => import("../pages/Book")));
 const BookTimePage = Loadable(lazy(() => import("../pages/BookTime")));
 const FanProfilePage = Loadable(lazy(() => import("../pages/FanProfile")));
 const FanSettingsPage = Loadable(lazy(() => import("../pages/FanSettings")));
+const ArtistHomePage = Loadable(lazy(() => import("../pages/ArtistHome")));
+const InvitePage = Loadable(lazy(() => import("../pages/Invite")));
+const ArtistSocialsPage = Loadable(lazy(() => import("../pages/ArtistSocials")));
+const ArtistDashboardPage = Loadable(lazy(() => import("../pages/ArtistDashboard")));
+const ArtistSettingsPage = Loadable(lazy(() => import("../pages/ArtistSettings")));

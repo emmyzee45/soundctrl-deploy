@@ -4,7 +4,7 @@ import Image from "components/Image";
 
 export default function AcceptedTicketCard({}) {
   return (
-    <Box sx={{ bgcolor: "common.white", borderRadius: 2 }}>
+    <Box sx={{ bgcolor: "common.white", borderRadius: 2, mb: 2 }}>
       <Image src={TicketOne} alt='ticket image' />
       <Stack spacing={1} sx={{ padding: 2, bgcolor: "common.white", borderRadius: 5 }}>
         <Stack spacing={0}>

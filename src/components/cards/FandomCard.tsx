@@ -4,7 +4,7 @@ import Avatar from "components/Avatar";
 
 export default function FandomCard({}) {
   return (
-    <Box sx={{ borderRadius: 2, bgcolor: "common.black", width: 350 }}>
+    <Box sx={{ borderRadius: 2, bgcolor: "common.black", width: 350, mb: 6 }}>
       <Stack spacing={2} sx={{ paddingInline: 5, paddingBlock: 8 }}>
         <Typography variant='h5' sx={{ color: "common.white" }}>
           12/MONTHS

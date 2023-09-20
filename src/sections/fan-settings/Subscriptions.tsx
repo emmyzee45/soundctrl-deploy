@@ -1,6 +1,6 @@
 // @mui
 import { styled } from "@mui/material/styles";
-import { Grid } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { FandomCard } from "components/cards";
 // components
 
@@ -15,14 +15,14 @@ const ContentStyle = styled("div")(({ theme }) => ({
 export default function Subscriptions() {
   return (
     <ContentStyle>
-      <Grid>
+      <Stack direction='row' flexWrap='wrap' justifyContent='space-between'>
         <FandomCard />
         <FandomCard />
         <FandomCard />
         <FandomCard />
         <FandomCard />
         <FandomCard />
-      </Grid>
+      </Stack>
     </ContentStyle>
   );
 }

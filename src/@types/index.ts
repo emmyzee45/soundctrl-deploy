@@ -24,3 +24,10 @@ export type TicketType = {
   time: string;
   price: string;
 };
+
+export type ArtistFanCardType = {
+  avatar: string;
+  name: string;
+  points: string;
+  date: string;
+};

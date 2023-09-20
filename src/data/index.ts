@@ -1,4 +1,10 @@
-import { TicketType, FansCardType, ArtistCommunityCardType, ArtistCardType } from "@types";
+import {
+  TicketType,
+  FansCardType,
+  ArtistCommunityCardType,
+  ArtistCardType,
+  ArtistFanCardType,
+} from "@types";
 import {
   TicketOne,
   TicketThree,
@@ -86,6 +92,20 @@ export const FANCARDS: FansCardType[] = [
     count: "1,000,000",
     fandom: "@Ice Spice Fandom",
   },
+];
+export const ARTISTFANCARDS: ArtistFanCardType[] = [
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
+  { avatar: UserAvatar, name: "User name", points: "1500", date: "Join since 09,2023" },
 ];
 
 export const COMMUNITYCARDS: ArtistCommunityCardType[] = [
