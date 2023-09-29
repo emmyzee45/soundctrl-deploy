@@ -56,11 +56,29 @@ export default function ArtistSettings() {
 
   return (
     <RootStyle>
-      <Typography variant='h2' sx={{ textTransform: "uppercase", color: "common.black" }}>
+      <Typography
+        variant='h3'
+        sx={{
+          textTransform: "uppercase",
+          color: "common.black",
+          fontFamily: "Dela Gothic One, cursive",
+        }}
+      >
         Settings
       </Typography>
       <Box sx={{ width: "100%" }}>
-        <Tabs value={value} onChange={handleChange} aria-label='settings tab'>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label='settings tab'
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "rgba(253, 147, 76, .8)",
+              height: "1rem",
+              marginBottom: ".5rem",
+            },
+          }}
+        >
           <Tab label='Profile' {...a11yProps(0)} />
           <Tab label='Notifications' {...a11yProps(1)} />
         </Tabs>

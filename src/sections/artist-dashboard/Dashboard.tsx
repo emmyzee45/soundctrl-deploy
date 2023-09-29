@@ -1,8 +1,7 @@
 // @mui
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
-import Image from "components/Image";
+import { User } from "assets";
 import { AcceptedTicketCard, ArtistFanCard, LocationListCard } from "components/cards";
 import { ARTISTFANCARDS } from "data";
 
@@ -35,7 +34,7 @@ export default function Dashboard() {
             {ARTISTFANCARDS.splice(0, 4).map((item, index) => (
               <ArtistFanCard
                 key={index}
-                avatar={item.avatar}
+                avatar={User}
                 name={item.name}
                 points={item.points}
                 date={item.date}
@@ -81,12 +80,19 @@ export default function Dashboard() {
         </Stack>
         <Box>
           <Stack direction='row' spacing={4}>
-            <Typography variant='h4' sx={{ textTransform: "uppercase", fontWeight: 700 }}>
+            <Typography
+              variant='h4'
+              sx={{
+                textTransform: "uppercase",
+                fontWeight: 700,
+                fontFamily: "Dela Gothic One, cursive",
+              }}
+            >
               Video Call Schedule
             </Typography>
-            <Button>see all</Button>
+            <Button sx={{ color: "common.black" }}>see all</Button>
           </Stack>
-          <Stack justifyContent='space-between' direction='row' flexWrap='wrap'>
+          <Stack justifyContent='space-between' direction='row' flexWrap='wrap' gap={2} marginY={3}>
             <AcceptedTicketCard />
             <AcceptedTicketCard />
             <AcceptedTicketCard />

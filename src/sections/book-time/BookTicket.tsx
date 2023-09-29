@@ -62,7 +62,18 @@ export default function BookTicket() {
         alignItems='center'
       >
         <Box sx={{ width: "fit-content" }}>
-          <Tabs value={value} onChange={handleChange} aria-label='time tickets tabs'>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label='time tickets tabs'
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "rgba(253, 147, 76, .8)",
+                height: "1rem",
+                marginBottom: ".5rem",
+              },
+            }}
+          >
             <Tab label='New Ticket' {...a11yProps(0)} />
             <Tab label='My Ticket' {...a11yProps(1)} />
           </Tabs>

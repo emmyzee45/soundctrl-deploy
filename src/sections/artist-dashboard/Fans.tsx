@@ -2,6 +2,7 @@
 import { Icon } from "@iconify/react";
 import { Grid, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { User } from "assets";
 import { ArtistFanCard } from "components/cards";
 import { ARTISTFANCARDS } from "data";
 
@@ -44,12 +45,12 @@ export default function Fans() {
       >
         TOP FANS
       </Typography>
-      <Stack justifyContent='space-between' flexWrap='wrap'>
+      <Stack justifyContent='space-between' flexWrap='wrap' gap={2}>
         {ARTISTFANCARDS.map((item, index) => (
           <ArtistFanCard
             key={index}
             name={item.name}
-            avatar={item.avatar}
+            avatar={User}
             points={item.points}
             date={item.date}
           />

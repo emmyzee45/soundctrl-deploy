@@ -60,7 +60,18 @@ export default function TimeTickets() {
         MY TIME TICKETS
       </Typography>
       <Box>
-        <Tabs value={value} onChange={handleChange} aria-label='ticket tabs '>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label='ticket tabs'
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "rgba(253, 147, 76, .8)",
+              height: "1rem",
+              marginBottom: ".5rem",
+            },
+          }}
+        >
           <Tab label='Hold' {...a11yProps(0)} />
           <Tab label='Used' {...a11yProps(1)} />
           <Tab label='Upcoming' {...a11yProps(2)} />

@@ -86,7 +86,18 @@ export default function Earnings() {
         </Typography>
       </Stack>
       <Box sx={{ width: "100%" }}>
-        <Tabs value={value} onChange={handleChange} aria-label='settings tab'>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label='settings tab'
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "rgba(253, 147, 76, .8)",
+              height: "1rem",
+              marginBottom: ".5rem",
+            },
+          }}
+        >
           <Tab label='Total Earning' {...a11yProps(0)} />
           <Tab label='Pay Out' {...a11yProps(1)} />
         </Tabs>

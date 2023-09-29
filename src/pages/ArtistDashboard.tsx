@@ -60,33 +60,47 @@ export default function ArtistDashboard() {
             onChange={handleChange}
             aria-label='dashboard tab'
             orientation='vertical'
+            classes={{
+              flexContainer: "align-items: flex-start;",
+            }}
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "rgba(253, 147, 76, .8)",
+                height: "1rem",
+                width: "3.5rem",
+                left: "0",
+                marginTop: "1.5rem",
+                color: "common.black",
+              },
+            }}
+            sx={{
+              "& .MuiTabs-flexContainer": {
+                alignItems: "flex-start",
+              },
+            }}
           >
-            <Tab label='Overview' {...a11yProps(0)} />
-            <Tab label='Dashboard' {...a11yProps(1)} />
-            <Tab label='My Bookings' {...a11yProps(2)} />
-            <Tab label='My Fans' {...a11yProps(3)} />
-            <Tab label='Earnings' {...a11yProps(4)} />
-            <Tab label='Settings' {...a11yProps(5)} />
+            <Tab sx={{ fontWeight: 800 }} label='Dashboard' {...a11yProps(0)} />
+            <Tab sx={{ fontWeight: 800 }} label='My Bookings' {...a11yProps(1)} />
+            <Tab sx={{ fontWeight: 800 }} label='My Fans' {...a11yProps(2)} />
+            <Tab sx={{ fontWeight: 800 }} label='Earnings' {...a11yProps(3)} />
+            <Tab sx={{ fontWeight: 800 }} label='Settings' {...a11yProps(4)} />
           </Tabs>
         </Box>
 
         <Box>
           <CustomTabPanel value={value} index={0}>
-            hi
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={1}>
             <Dashboard />
           </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
+          <CustomTabPanel value={value} index={1}>
             <TimeTickets />
           </CustomTabPanel>
-          <CustomTabPanel value={value} index={3}>
+          <CustomTabPanel value={value} index={2}>
             <Fans />
           </CustomTabPanel>
-          <CustomTabPanel value={value} index={4}>
+          <CustomTabPanel value={value} index={3}>
             <Earnings />
           </CustomTabPanel>
-          <CustomTabPanel value={value} index={5}>
+          <CustomTabPanel value={value} index={4}>
             <ArtistSettings />
           </CustomTabPanel>
         </Box>
