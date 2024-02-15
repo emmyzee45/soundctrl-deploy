@@ -15,6 +15,8 @@ const RootStyle = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function HomePage() {
+  console.log(process.env.BASE_URL);
+
   return (
     <RootStyle>
       <HomeHero />

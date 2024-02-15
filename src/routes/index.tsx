@@ -88,6 +88,8 @@ export default function Router() {
         { path: "/artist-socials", element: <ArtistSocialsPage /> },
         { path: "/artist-dashboard", element: <ArtistDashboardPage /> },
         { path: "/artist-settings", element: <ArtistSettingsPage /> },
+        { path: "/login", element: <LoginPage /> },
+        { path: "/register", element: <RegisterPage /> },
       ],
     },
     // { path: '*', element: <Navigate to="/404" replace /> },
@@ -112,3 +114,5 @@ const InvitePage = Loadable(lazy(() => import("../pages/Invite")));
 const ArtistSocialsPage = Loadable(lazy(() => import("../pages/ArtistSocials")));
 const ArtistDashboardPage = Loadable(lazy(() => import("../pages/ArtistDashboard")));
 const ArtistSettingsPage = Loadable(lazy(() => import("../pages/ArtistSettings")));
+const LoginPage = Loadable(lazy(() => import("../pages/Login")));
+const RegisterPage = Loadable(lazy(() => import("../pages/Register")));
