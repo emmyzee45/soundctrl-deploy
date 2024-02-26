@@ -1,17 +1,10 @@
 // @mui
-import { Box, Button, Typography, Stack } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
-const ContentStyle = styled("div")(({ theme }) => ({
-  margin: "auto",
-  overflow: "hidden",
-  padding: theme.spacing(10, 10),
-  backgroundColor: "common.white",
-}));
+import { Button, Typography, Stack } from "@mui/material";
+import SectionContainer from "layouts/main/SectionContainer";
 
 export default function BookArtist() {
   return (
-    <ContentStyle>
+    <SectionContainer>
       <Stack direction={{ xs: "column", md: "row" }} justifyContent='space-between'>
         <Stack spacing={2}>
           <Typography variant='h2' sx={{ color: "common.black" }}>
@@ -25,6 +18,6 @@ export default function BookArtist() {
           Experience a private one on one video conversation with your favorite artist.
         </Typography>
       </Stack>
-    </ContentStyle>
+    </SectionContainer>
   );
 }
