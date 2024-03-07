@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 const CracoLessPlugin = require("craco-less");
+const million = require("million/compiler");
 
 module.exports = {
   plugins: [
     {
-      plugin: CracoLessPlugin,
+      plugin: { CracoLessPlugin, add: [million.webpack({ auto: true })] },
       options: {
         lessLoaderOptions: {
           lessOptions: {

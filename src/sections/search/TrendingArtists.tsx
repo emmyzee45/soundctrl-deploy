@@ -11,7 +11,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
   padding: theme.spacing(2, 10),
 }));
 
-export default function Trending() {
+export default function TrendingArtists() {
   return (
     <ContentStyle>
       <Typography

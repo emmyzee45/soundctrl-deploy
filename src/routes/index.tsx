@@ -78,13 +78,15 @@ export default function Router() {
       element: <MainLayout />,
       children: [
         { element: <HomePage />, index: true },
-        { path: "/search", element: <SearchPage /> },
+        { path: "/trending", element: <TrendingPage /> },
         { path: "/book", element: <BookPage /> },
         { path: "/book-time", element: <BookTimePage /> },
         { path: "/fan-profile", element: <FanProfilePage /> },
         { path: "/fan-settings", element: <FanSettingsPage /> },
         { path: "/login", element: <LoginPage /> },
         { path: "/register", element: <RegisterPage /> },
+        { path: "/forgot-password", element: <ForgotPasswordPage /> },
+        { path: "/create-password", element: <CreatePasswordPage /> },
       ],
     },
     // { path: '*', element: <Navigate to="/404" replace /> },
@@ -99,10 +101,12 @@ export default function Router() {
 
 // Main
 const HomePage = Loadable(lazy(() => import("../pages/Home")));
-const SearchPage = Loadable(lazy(() => import("../pages/Search")));
+const TrendingPage = Loadable(lazy(() => import("../pages/Trending")));
 const BookPage = Loadable(lazy(() => import("../pages/Book")));
 const BookTimePage = Loadable(lazy(() => import("../pages/BookTime")));
 const FanProfilePage = Loadable(lazy(() => import("../pages/FanProfile")));
 const FanSettingsPage = Loadable(lazy(() => import("../pages/FanSettings")));
 const LoginPage = Loadable(lazy(() => import("../pages/Login")));
 const RegisterPage = Loadable(lazy(() => import("../pages/Register")));
+const ForgotPasswordPage = Loadable(lazy(() => import("../pages/ForgotPassword")));
+const CreatePasswordPage = Loadable(lazy(() => import("../pages/CreatePassword")));

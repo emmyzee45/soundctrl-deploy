@@ -2,27 +2,26 @@
 import { Icon } from "@iconify/react";
 import {
   Button,
-  Divider,
   InputBase,
   Link,
   Paper,
   Stack,
   Typography,
-  IconButton,
   Snackbar,
+  IconButton,
 } from "@mui/material";
-import SectionContainer from "layouts/main/SectionContainer";
 import { useState, useContext } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { LoginType } from "../@types/auth";
-import { loginSchema } from "utils/validationSchema";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import SectionContainer from "layouts/main/SectionContainer";
+import { PasswordType } from "../@types/auth";
+import { createPasswordSchema } from "utils/validationSchema";
 import { secondaryButtonStyles } from "utils/cssStyles";
 import { AuthContext } from "contexts/JWTContext";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
@@ -34,26 +33,25 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<z.infer<typeof createPasswordSchema>>({
+    resolver: zodResolver(createPasswordSchema),
     defaultValues: {
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
-  const onSubmit: SubmitHandler<LoginType> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<PasswordType> = async ({ password }) => {
     try {
-      const response = await authContext?.login(email, password);
+      const response = await authContext;
+
       setOpenSnackbar(true);
       setSnackbarMessage(true);
-      setTimeout(() => {
-        navigate("/trending");
-      }, 10000);
+      navigate("/login");
 
       console.log(response);
     } catch (error) {
-      console.error("login failed: ", error);
+      console.error("Create Password failed:", error);
       setSnackbarMessage(false);
     }
   };
@@ -78,21 +76,21 @@ export default function Login() {
   return (
     <SectionContainer>
       <Typography variant='h2' sx={{ color: "common.black" }}>
-        Hello! Log in to get started
+        Create new password
       </Typography>
 
-      <Link underline='always' href='/register' color='rgba(253, 147, 76, 1)'>
-        <Typography variant='subtitle1' sx={{ color: "orange" }}>
-          create your account
-        </Typography>
-      </Link>
+      <Typography variant='subtitle1' sx={{ color: "#8391A1" }}>
+        Your new password must be unique from those previously used.
+      </Typography>
 
       <Snackbar
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleClose}
         action={action}
-        message={snackbarMessage ? "Successfully Logged in" : "Error logging in account"}
+        message={
+          snackbarMessage ? "Successfully register, Please Login" : "Error registering account"
+        }
       />
 
       <Stack justifyContent='center' marginInline='auto' width={{ md: "30%" }}>
@@ -110,39 +108,9 @@ export default function Login() {
               }}
             >
               <InputBase
-                placeholder='Enter your email'
-                {...register("email")}
-                type='email'
-                inputProps={{ "aria-label": "Enter your email" }}
-                sx={{
-                  bgcolor: "rgba(243, 243, 243, 1)",
-                  padding: "8px 10px",
-                  width: "100%",
-                  border: "1px solid #E8ECF4",
-                  borderRadius: 1,
-                }}
-              />
-            </Paper>
-            {errors.email && (
-              <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
-                {errors.email.message}
-              </span>
-            )}
-            <Paper
-              elevation={0}
-              component='div'
-              sx={{
-                p: "2px 6px",
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                position: "relative",
-              }}
-            >
-              <InputBase
                 placeholder='Password'
-                {...register("password")}
                 type={showPassword ? "text" : "password"}
+                {...register("password")}
                 inputProps={{ "aria-label": "Password" }}
                 sx={{
                   bgcolor: "rgba(243, 243, 243, 1)",
@@ -163,29 +131,46 @@ export default function Login() {
                 {errors.password.message}
               </span>
             )}
-            <Link href='/forgot-password' sx={{ textAlign: "right", color: "#6A707C" }}>
-              Forgot password?
-            </Link>
-            <Button variant='contained' size='large' sx={secondaryButtonStyles} type='submit'>
-              Login
+            <Paper
+              elevation={0}
+              component='div'
+              sx={{
+                p: "2px 6px",
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                position: "relative",
+              }}
+            >
+              <InputBase
+                placeholder='Confirm Password'
+                type={showPassword ? "text" : "password"}
+                {...register("confirmPassword")}
+                inputProps={{ "aria-label": "Confirm Password" }}
+                sx={{
+                  bgcolor: "rgba(243, 243, 243, 1)",
+                  padding: "8px 10px",
+                  width: "100%",
+                  border: "1px solid #E8ECF4",
+                  borderRadius: 1,
+                }}
+              />
+              <Icon
+                icon='fluent:eye-28-filled'
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ position: "absolute", right: 10, cursor: "pointer" }}
+              />
+            </Paper>
+            {errors.password && (
+              <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
+                {errors.password.message}
+              </span>
+            )}
+            <Button type='submit' variant='contained' size='large' sx={secondaryButtonStyles}>
+              Register
             </Button>
           </Stack>
         </form>
-        <Divider>Or Login with</Divider>
-        <Stack direction='row' spacing={2} justifyContent='center' marginTop={5}>
-          <Button size='large' sx={{ bgcolor: "#1877f2", paddingBlock: 2, paddingInline: 4 }}>
-            <Icon icon='logos:facebook' />
-          </Button>
-          <Button
-            size='large'
-            sx={{ bgcolor: "common.white", border: "1px solid #E8ECF4", paddingInline: 4 }}
-          >
-            <Icon icon='flat-color-icons:google' />
-          </Button>
-          <Button size='large' sx={{ bgcolor: "common.black", paddingInline: 4 }}>
-            <Icon icon='ri:apple-fill' color='white' />
-          </Button>
-        </Stack>
       </Stack>
     </SectionContainer>
   );

@@ -96,5 +96,6 @@
   "browser": {
     "crypto": false,
     "stream": false
-  }
+  },
+  "proxy": "http://18.234.121.45"
 }

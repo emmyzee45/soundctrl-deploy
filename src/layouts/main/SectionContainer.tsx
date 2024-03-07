@@ -1,19 +1,31 @@
-import React from "react";
 import { styled } from "@mui/material/styles";
 
 type ContainerProps = {
   children: React.ReactNode;
+  bgColor?: string;
 };
+
+const RootStyle = styled("div")(({ theme }) => ({
+  height: "100%",
+}));
 
 const ContentStyle = styled("div")(({ theme }) => ({
   margin: "auto",
   overflow: "hidden",
-  padding: theme.spacing(10, 10),
+  textAlign: "center",
+  padding: theme.spacing(15, 10),
+  [theme.breakpoints.down("md")]: {
+    // responsive options
+  },
   backgroundColor: "common.white",
 }));
 
-const SectionContainer = ({ children }: ContainerProps) => {
-  return <ContentStyle>{children}</ContentStyle>;
+const SectionContainer = ({ children, bgColor }: ContainerProps) => {
+  return (
+    <RootStyle>
+      <ContentStyle sx={{ bgcolor: `${bgColor}` }}>{children}</ContentStyle>;
+    </RootStyle>
+  );
 };
 
 export default SectionContainer;

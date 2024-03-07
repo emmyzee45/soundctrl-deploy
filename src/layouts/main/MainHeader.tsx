@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 // @mui
 import { styled, useTheme } from "@mui/material/styles";
-import { Box, Button, AppBar, Toolbar, Container } from "@mui/material";
+import { Box, Button, AppBar, Toolbar, Container, Link } from "@mui/material";
 // hooks
 import useOffSetTop from "../../hooks/useOffSetTop";
 import useResponsive from "../../hooks/useResponsive";
@@ -16,6 +16,8 @@ import Image from "../../components/Image";
 import MenuDesktop from "./MenuDesktop";
 import MenuMobile from "./MenuMobile";
 import navConfig from "./MenuConfig";
+import { useContext } from "react";
+import { AuthContext } from "contexts/JWTContext";
 
 // ----------------------------------------------------------------------
 
@@ -56,6 +58,10 @@ export default function MainHeader() {
 
   const isHome = pathname === "/";
 
+  const authContext = useContext(AuthContext);
+
+  const authenticated = authContext?.isAuthenticated;
+
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: "transparent" }}>
       <ToolbarStyle
@@ -79,24 +85,20 @@ export default function MainHeader() {
 
           {/* {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
 
-          <Button
-            variant='text'
-            target='_blank'
-            rel='noopener'
-            href='https://material-ui.com/store/items/minimal-dashboard/'
-            sx={{ color: "grey.700" }}
-          >
-            LOG IN
-          </Button>
-          <Button
-            variant='text'
-            target='_blank'
-            rel='noopener'
-            href='https://material-ui.com/store/items/minimal-dashboard/'
-            sx={{ color: "grey.700" }}
-          >
-            SIGN UP
-          </Button>
+          {authenticated ? (
+            <>
+              <Link href='/'>Home</Link>
+              <Link href='/trending'>Explore</Link>
+              <Link href='/chat'>Superfan Chat</Link>
+              <Link href='/profile'>Profile</Link>
+              <Link onClick={() => authContext?.logout}>LOG OUT</Link>
+            </>
+          ) : (
+            <>
+              <Link href='/login'>LOG IN</Link>
+              <Link href='/register'>SIGN UP</Link>
+            </>
+          )}
 
           {/* {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
         </Container>

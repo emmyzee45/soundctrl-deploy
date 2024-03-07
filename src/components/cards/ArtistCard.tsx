@@ -2,6 +2,7 @@ import { Box, Stack, Typography, Button } from "@mui/material";
 import { ArtistCardType } from "@types";
 import Avatar from "components/Avatar";
 import Image from "components/Image";
+import { primaryButtonStyles } from "utils/cssStyles";
 
 const ArtistCard = ({ image, avatar, name, handle }: ArtistCardType) => {
   return (
@@ -54,18 +55,7 @@ const ArtistCard = ({ image, avatar, name, handle }: ArtistCardType) => {
             </Typography>
           </Box>
         </Stack>
-        <Button
-          variant='contained'
-          sx={{
-            bgcolor: "common.black",
-            color: "common.white",
-            boxShadow: "none",
-            ":hover": {
-              bgcolor: "common.black",
-              color: "rgba(253, 147, 76, 1)",
-            },
-          }}
-        >
+        <Button variant='contained' sx={primaryButtonStyles}>
           subscribe
         </Button>
       </Box>

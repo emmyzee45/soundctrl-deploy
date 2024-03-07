@@ -20,6 +20,7 @@ import { MotionContainer, varFade } from "../../components/animate";
 
 //images
 import { CrowdImage } from "assets";
+import { outlineButtonStyles, primaryButtonStyles } from "utils/cssStyles";
 
 // ----------------------------------------------------------------------
 
@@ -53,33 +54,10 @@ export default function HomeHero() {
             </Stack>
           </m.div>
           <Stack justifyContent='center' alignItems='center' spacing={2} direction='row'>
-            <Button
-              size='large'
-              sx={{
-                bgcolor: "common.black",
-                color: "common.white",
-                ":hover": {
-                  bgcolor: "common.black",
-                  color: "rgba(253, 147, 76, 1)",
-                },
-              }}
-            >
+            <Button size='large' sx={primaryButtonStyles}>
               join a fandom
             </Button>
-            <Button
-              size='large'
-              variant='outlined'
-              sx={{
-                borderColor: "rgba(253, 147, 76, 1)",
-                color: "rgba(253, 147, 76, 1)",
-
-                ":hover": {
-                  bgcolor: "rgba(253, 147, 76, 1)",
-                  color: "common.white",
-                  borderColor: "rgba(253, 147, 76, 1)",
-                },
-              }}
-            >
+            <Button size='large' variant='outlined' sx={outlineButtonStyles}>
               Become a creator
             </Button>
           </Stack>
@@ -162,19 +140,7 @@ export default function HomeHero() {
 
             <Button
               variant='contained'
-              sx={{
-                bgcolor: "common.black",
-                color: "common.white",
-                borderRadius: 2,
-                width: "20%",
-                position: "absolute",
-                right: 0,
-                boxShadow: "none",
-                ":hover": {
-                  bgcolor: "common.black",
-                  color: "rgba(253, 147, 76, 1)",
-                },
-              }}
+              sx={{ position: "absolute", right: 0, ...primaryButtonStyles }}
               size='large'
             >
               search
