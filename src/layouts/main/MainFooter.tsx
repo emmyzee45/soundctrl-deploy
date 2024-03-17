@@ -34,7 +34,7 @@ export default function MainFooter() {
             textAlign: { xs: "center", md: "left" },
           }}
         >
-          ©2023 SOUNDCTRL TECH, INC. All rights reserved.
+          ©2024 SOUNDCTRL TECH, INC. All rights reserved.
         </Typography>
         <Stack direction='row' spacing={3}>
           <Stack spacing={2} direction='row' alignItems='center'>
