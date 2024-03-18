@@ -129,25 +129,25 @@ export default function Login() {
       })
   }
   const signInWithFacebook = () => {
-    signInWithPopup(auth, facebookProvider)
-      .then((result) => {
-        console.log(result)
-        // makeRequest
-        //   .post("/auth/login/social", {
-        //     username: result.user.displayName,
-        //     email: result.user.email,
-        //     avatarImg: result.user.photoURL,
-        //     loginPlatform: "Google"
-        //   })
-        //   .then((res) => {
-        //     console.log(res)
-        //     dispatch(loginSuccess(res.data));
-        //     navigate(from, { replace: true })
-        //   });
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    // signInWithPopup(auth, facebookProvider)
+    //   .then((result) => {
+    //     console.log(result)
+    //     // makeRequest
+    //     //   .post("/auth/login/social", {
+    //     //     username: result.user.displayName,
+    //     //     email: result.user.email,
+    //     //     avatarImg: result.user.photoURL,
+    //     //     loginPlatform: "Google"
+    //     //   })
+    //     //   .then((res) => {
+    //     //     console.log(res)
+    //     //     dispatch(loginSuccess(res.data));
+    //     //     navigate(from, { replace: true })
+    //     //   });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
   }
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
