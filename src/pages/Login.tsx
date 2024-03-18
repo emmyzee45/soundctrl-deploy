@@ -25,30 +25,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { makeRequest } from "utils/axios";
 import { loginSuccess } from "../redux/redux-slices/UserSlice";
 import typography from "theme/typography";
-// import {auth, provider } from "../firebase"
-// import {SignInWithPopup } from "firebase/auth"
+import {auth, googleProvider, facebookProvider } from "../firebase"
+import { signInWithPopup } from "firebase/auth"
 
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import {getAuth, GoogleAuthProvider } from "firebase/auth";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBhduzZGqco3WHnEqiaS1R4e0bYvJXtF3I",
-//   authDomain: "zaria-3c72a.firebaseapp.com",
-//   projectId: "zaria-3c72a",
-//   storageBucket: "zaria-3c72a.appspot.com",
-//   messagingSenderId: "823554149327",
-//   appId: "1:823554149327:web:a47cf948ab6a8ddad9a0ba"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// export const auth = getAuth();
-// export const provider = new GoogleAuthProvider();
-// export default app;
 
 type UserType = {
   email?: string,
@@ -129,15 +108,47 @@ export default function Login() {
     }
   };
 
-  // const signInWithGoogle = () => {
-  //   SignInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       console.log(result)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        makeRequest
+          .post("/auth/login/social", {
+            username: result.user.displayName,
+            email: result.user.email,
+            avatarImg: result.user.photoURL,
+            loginPlatform: "Google"
+          })
+          .then((res) => {
+            console.log(res)
+            dispatch(loginSuccess(res.data));
+            navigate(from, { replace: true })
+          });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  const signInWithFacebook = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        console.log(result)
+        // makeRequest
+        //   .post("/auth/login/social", {
+        //     username: result.user.displayName,
+        //     email: result.user.email,
+        //     avatarImg: result.user.photoURL,
+        //     loginPlatform: "Google"
+        //   })
+        //   .then((res) => {
+        //     console.log(res)
+        //     dispatch(loginSuccess(res.data));
+        //     navigate(from, { replace: true })
+        //   });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") return;
@@ -258,12 +269,13 @@ export default function Login() {
         </form>
         <Divider>Or Login with</Divider>
         <Stack direction='row' spacing={2} justifyContent='center' marginTop={5}>
-          <Button size='large' sx={{ bgcolor: "#1877f2", paddingBlock: 2, paddingInline: 4 }}>
+          <Button size='large' onClick={signInWithFacebook} sx={{ bgcolor: "#1877f2", paddingBlock: 2, paddingInline: 4 }}>
             <Icon icon='logos:facebook' />
           </Button>
           <Button
             size='large'
             sx={{ bgcolor: "common.white", border: "1px solid #E8ECF4", paddingInline: 4 }}
+            onClick={signInWithGoogle}
           >
             <Icon icon='flat-color-icons:google' />
           </Button>
