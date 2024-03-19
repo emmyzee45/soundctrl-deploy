@@ -71,11 +71,8 @@ export default function Login() {
     try{
       const res = await makeRequest.post("/auth/login", input);
       dispatch(loginSuccess(res.data));
-      setOpenSnackbar(true);
-      setSnackbarMessage(true);
-      setTimeout(() => {
-        navigate("/trending");
-      }, 10000);
+      // setOpenSnackbar(true);
+      // setSnackbarMessage(true);
       navigate(from, { replace: true })
     }catch(err) {
     //   if (!err?.response) {

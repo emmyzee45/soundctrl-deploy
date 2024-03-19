@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // @mui
 import { styled, useTheme } from "@mui/material/styles";
 import { Box, Button, AppBar, Toolbar, Container, Link } from "@mui/material";
@@ -17,8 +17,9 @@ import MenuDesktop from "./MenuDesktop";
 import MenuMobile from "./MenuMobile";
 import navConfig from "./MenuConfig";
 import { useContext } from "react";
-import { AuthContext } from "contexts/JWTContext";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { makeRequest } from "utils/axios";
+import { logOut } from "../../redux/redux-slices/UserSlice";
 
 // ----------------------------------------------------------------------
 
@@ -59,10 +60,18 @@ export default function MainHeader() {
 
   const isHome = pathname === "/";
 
-  const authContext = useContext(AuthContext);
-
-  const authenticated = authContext?.isAuthenticated;
   const isAuthenticated = useAppSelector((state) => state.user.authenticated);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOut = async() => {
+    try {
+      await makeRequest.post("/auth/logout");
+      dispatch(logOut());
+      navigate("/login");
+    }catch(err) {
+    }
+  }
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: "transparent" }}>
@@ -93,7 +102,7 @@ export default function MainHeader() {
               <Link href='/trending'>Explore</Link>
               <Link href='/chat'>Superfan Chat</Link>
               <Link href='/profile'>Profile</Link>
-              <Link onClick={() => authContext?.logout}>LOG OUT</Link>
+              <Link onClick={handleLogOut}>LOG OUT</Link>
             </>
           ) : (
             <>

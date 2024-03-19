@@ -20,8 +20,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { secondaryButtonStyles } from "utils/cssStyles";
 import { AuthContext } from "contexts/JWTContext";
 import { useNavigate } from "react-router-dom";
+import { makeRequest } from "utils/axios";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
   const authContext = useContext(AuthContext);
@@ -52,6 +54,20 @@ export default function Login() {
       setSnackbarMessage(false);
     }
   };
+
+  const handleFormSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const res = await makeRequest.post("/auth/forgot-password", {email});
+      setOpenSnackbar(true);
+      setSnackbarMessage(true);
+      setTimeout(() => {}, 10000);
+      navigate("/create-password")
+    } catch (error) {
+      console.error("login failed: ", error);
+      setSnackbarMessage(false);
+    }
+  }
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") return;
@@ -91,7 +107,7 @@ export default function Login() {
       />
 
       <Stack justifyContent='center' marginInline='auto' width={{ md: "30%" }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleFormSubmit}>
           <Stack spacing={2} marginBlock={5}>
             <Paper
               elevation={0}
@@ -108,6 +124,7 @@ export default function Login() {
                 placeholder='Enter your email'
                 {...register("email")}
                 type='email'
+                onChange={(e)=>setEmail(e.target.value)}
                 inputProps={{ "aria-label": "Enter your email" }}
                 sx={{
                   bgcolor: "rgba(243, 243, 243, 1)",
