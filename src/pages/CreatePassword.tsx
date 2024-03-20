@@ -167,7 +167,7 @@ export default function Register() {
               </span>
             )}
             <Button type='submit' variant='contained' size='large' sx={secondaryButtonStyles}>
-              Register
+              Reset Password
             </Button>
           </Stack>
         </form>
