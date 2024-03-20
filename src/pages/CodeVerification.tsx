@@ -84,7 +84,7 @@ export default function CodeVerification() {
                     display: "flex",
                     alignItems: "center",
                     width: "100%",
-                    position: "relative", 
+                    position: "relative",
                   }}
                 >
                   {[1, 2, 3, 4].map((index) => (
@@ -95,13 +95,20 @@ export default function CodeVerification() {
                       name={`code${index}`}
                       style={{
                         width: "70px",
+                        fontStyle: "bold",
+                        fontSize: "24px",
                         height: "60px",
-                        margin: "0 10px", 
+                        marginRight: "30px",
                         border: "1px solid #E8ECF4",
                         borderRadius: "8px",
                         textAlign: "center",
+                        background: "#E8ECF4",
                       }}
                       required
+                      onFocus={(e) => (e.target.style.background = "#FFFFFF")}
+                      onBlur={(e) =>
+                        (e.target.style.background = e.target.value ? "#FFFFFF" : "#E8ECF4")
+                      }
                     />
                   ))}
                 </Paper>
