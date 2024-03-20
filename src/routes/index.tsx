@@ -14,6 +14,7 @@ import MainLayout from "../layouts/main";
 // components
 import LoadingScreen from "../components/LoadingScreen";
 import CodeVerification from "pages/CodeVerification";
+import SuccessPage from "pages/SuccessPage";
 
 // ----------------------------------------------------------------------
 
@@ -87,7 +88,8 @@ export default function Router() {
         { path: "/login", element: <LoginPage /> },
         { path: "/register", element: <RegisterPage /> },
         { path: "/forgot-password", element: <ForgotPasswordPage /> },
-        { path: "/code-verification", element: <CodeVerification />},
+        { path: "/code-verification", element: <CodeVerification />},        
+        { path: "/successful", element: <SuccessPage /> },
         { path: "/create-password", element: <CreatePasswordPage /> },
       ],
     },
