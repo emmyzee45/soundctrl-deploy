@@ -108,7 +108,7 @@ export default function Register() {
               }}
             >
               <InputBase
-                placeholder='Password'
+                placeholder='New Password'
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
                 inputProps={{ "aria-label": "Password" }}
@@ -127,7 +127,7 @@ export default function Register() {
               />
             </Paper>
             {errors.password && (
-              <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
+              <span style={{ color: "red", textAlign: "left", fontSize: "15px" }}>
                 {errors.password.message}
               </span>
             )}
@@ -162,7 +162,7 @@ export default function Register() {
               />
             </Paper>
             {errors.password && (
-              <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
+              <span style={{ color: "red", textAlign: "left", fontSize: "15px" }}>
                 {errors.password.message}
               </span>
             )}
