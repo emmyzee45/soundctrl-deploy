@@ -5,12 +5,13 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { secondaryButtonStyles } from "utils/cssStyles";
+import NotistackProvider from '../components/NotistackProvider';
 
 export default function CodeVerification() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
   const navigate = useNavigate();
-
+  
   const {
     handleSubmit,
     formState: { errors },
@@ -23,11 +24,11 @@ export default function CodeVerification() {
     code4: string;
   }> = async ({ code1, code2, code3, code4 }) => {
     try {
-      //
-      //
       setOpenSnackbar(true);
       setSnackbarMessage(true);
-      setTimeout(() => {}, 10000);
+      setTimeout(() => {
+        setOpenSnackbar(false);
+      }, 6000); // Close snackbar after 6 seconds
     } catch (error) {
       console.error("Code verification failed: ", error);
       setSnackbarMessage(false);
@@ -52,83 +53,85 @@ export default function CodeVerification() {
 
   return (
     <SectionContainer>
-      <div style={{ justifyContent: "center", alignItems: "center" }}>
-        <Stack justifyContent='center' alignItems='center' spacing={4}>
-          <Typography variant='h2' sx={{ color: "common.black" }}>
-            OTP Verification
-          </Typography>
-
-          <Typography
-            variant='subtitle1'
-            width='331px'
-            sx={{ color: "#96989D", textAlign: "center" }}
-          >
-            Enter the verification code we just sent on your email address.
-          </Typography>
-
-          <Snackbar
-            open={openSnackbar}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            action={action}
-            message={snackbarMessage ? "Code verified" : "Error verifying code"}
-          />
-
-          <Stack justifyContent='center' marginInline='auto' width={{ md: "30%" }}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Stack spacing={2} marginBlock={5}>
-                <Paper
-                  elevation={0}
-                  component='div'
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "100%",
-                    position: "relative",
-                  }}
-                >
-                  {[1, 2, 3, 4].map((index) => (
-                    <input
-                      key={index}
-                      type='text'
-                      maxLength={1}
-                      name={`code${index}`}
-                      style={{
-                        width: "70px",
-                        fontStyle: "bold",
-                        fontSize: "24px",
-                        height: "60px",
-                        marginRight: "30px",
-                        border: "1px solid #E8ECF4",
-                        borderRadius: "8px",
-                        textAlign: "center",
-                        background: "#E8ECF4",
-                      }}
-                      required
-                      onFocus={(e) => (e.target.style.background = "#FFFFFF")}
-                      onBlur={(e) =>
-                        (e.target.style.background = e.target.value ? "#FFFFFF" : "#E8ECF4")
-                      }
-                    />
-                  ))}
-                </Paper>
-                {errors.code1 && (
-                  <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
-                    Code is required
-                  </span>
-                )}
-
-                <Button variant='contained' size='large' sx={secondaryButtonStyles} type='submit'>
-                  Verify
-                </Button>
-              </Stack>
-            </form>
-            <Typography variant='subtitle1' sx={{ color: "#96989D", textAlign: "center" }}>
-              Please enter the 4-digit code sent to your email.
+      <NotistackProvider>
+        <div style={{ justifyContent: "center", alignItems: "center" }}>
+          <Stack justifyContent='center' alignItems='center' spacing={4}>
+            <Typography variant='h2' sx={{ color: "common.black" }}>
+              OTP Verification
             </Typography>
+
+            <Typography
+              variant='subtitle1'
+              width='331px'
+              sx={{ color: "#96989D", textAlign: "center" }}
+            >
+              Enter the verification code we just sent on your email address.
+            </Typography>
+
+            <Snackbar
+              open={openSnackbar}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              action={action}
+              message={snackbarMessage ? "Code verified" : "Error verifying code"}
+            />
+
+            <Stack justifyContent='center' marginInline='auto' width={{ md: "30%" }}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Stack spacing={2} marginBlock={5}>
+                  <Paper
+                    elevation={0}
+                    component='div'
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100%",
+                      position: "relative",
+                    }}
+                  >
+                    {[1, 2, 3, 4].map((index) => (
+                      <input
+                        key={index}
+                        type='text'
+                        maxLength={1}
+                        name={`code${index}`}
+                        style={{
+                          width: "70px",
+                          fontStyle: "bold",
+                          fontSize: "24px",
+                          height: "60px",
+                          marginRight: "30px",
+                          border: "1px solid #E8ECF4",
+                          borderRadius: "8px",
+                          textAlign: "center",
+                          background: "#E8ECF4",
+                        }}
+                        required
+                        onFocus={(e) => (e.target.style.background = "#FFFFFF")}
+                        onBlur={(e) =>
+                          (e.target.style.background = e.target.value ? "#FFFFFF" : "#E8ECF4")
+                        }
+                      />
+                    ))}
+                  </Paper>
+                  {errors.code1 && (
+                    <span style={{ color: "red", textAlign: "left", fontSize: "5px" }}>
+                      Code is required
+                    </span>
+                  )}
+
+                  <Button variant='contained' size='large' sx={secondaryButtonStyles} type='submit'>
+                    Verify
+                  </Button>
+                </Stack>
+              </form>
+              <Typography variant='subtitle1' sx={{ color: "#96989D", textAlign: "center" }}>
+                Please enter the 4-digit code sent to your email.
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
-      </div>
+        </div>
+      </NotistackProvider>
     </SectionContainer>
   );
 }
