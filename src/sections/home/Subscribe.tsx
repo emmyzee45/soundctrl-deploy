@@ -1,6 +1,8 @@
 // @mui
 import { styled } from "@mui/material/styles";
 import { Button, Box, Container, Typography, Paper, InputBase } from "@mui/material";
+import { useState } from "react";
+import { makeRequest } from "utils/axios";
 // components
 
 // ----------------------------------------------------------------------
@@ -15,6 +17,16 @@ const ContentStyle = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Subscribe() {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async() => {
+    try {
+      const res = await makeRequest.post("/users/news", {email});
+      res.status === 200 && console.log(res.data)
+    }catch(err) {
+
+    }
+  }
   return (
     <Container>
       <ContentStyle>
@@ -35,6 +47,7 @@ export default function Subscribe() {
           >
             <InputBase
               placeholder=''
+              onChange={(e) => setEmail(e.target.value)}
               inputProps={{ "aria-label": "Subscribe" }}
               sx={{
                 bgcolor: "common.white",
@@ -58,6 +71,7 @@ export default function Subscribe() {
                   color: "rgba(253, 147, 76, 1)",
                 },
               }}
+              onClick={handleSubmit}
               size='large'
             >
               Subscribe

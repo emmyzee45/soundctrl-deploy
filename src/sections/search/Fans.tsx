@@ -2,8 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
 import { FansCard } from "components/cards";
 import { FANCARDS } from "data";
-import { useAppSelector } from "../../redux/hooks";
-import { ArtistProps, UserProps } from "@types";
+import { UserProps } from "@types";
 
 const ContentStyle = styled("div")(({ theme }) => ({
   padding: theme.spacing(10, 8),
@@ -12,13 +11,12 @@ const ContentStyle = styled("div")(({ theme }) => ({
   overflow: "hidden",
 }));
 
-export default function Fans({}) {
-  const fans = useAppSelector((state) => state.fans.fans);
-  const topFans: UserProps[] = fans.sort((a,b) => {
-    if(b.points === undefined) return -1;
-    if(a.points === undefined) return -1;
-    return b.points - a.points
-  });
+type UserListProps = {
+  topFans: UserProps[]
+}
+
+export default function Fans({topFans}: UserListProps) {
+ 
 
   return (
     <ContentStyle>

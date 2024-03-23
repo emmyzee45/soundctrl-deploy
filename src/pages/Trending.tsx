@@ -20,7 +20,15 @@ export default function Trending() {
   const [search, setSearch] = useState("");
   const [filterArtist, setFilterArtist] = useState<ArtistProps[]>([]);
 
+  const fans = useAppSelector((state) => state.fans.fans);
   const artists = useAppSelector((state) => state.artist.artists);
+
+  const topFans: UserProps[] = fans.sort((a,b) => {
+    if(b.points === undefined) return -1;
+    if(a.points === undefined) return -1;
+    return b.points - a.points
+  });
+
   const trending: ArtistProps[] = artists?.sort((a,b) => b.subscribedUsers.length - a.subscribedUsers.length);
 
   useEffect(() => {
@@ -29,7 +37,6 @@ export default function Trending() {
     }
   }, [search]);
 
-  console.log(filterArtist)
 
   return (
     <RootStyle>
@@ -39,7 +46,7 @@ export default function Trending() {
       ):(
       <TrendingArtists trending={trending}/>
       )}
-      <Fans />
+      <Fans topFans={topFans} />
     </RootStyle>
   );
 }

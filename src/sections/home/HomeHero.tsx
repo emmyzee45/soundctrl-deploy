@@ -32,9 +32,14 @@ const ContentStyle = styled((props: StackProps) => <Stack spacing={8} {...props}
   })
 );
 
+type SearchFormProps = {
+  setSearch: React.Dispatch<React.SetStateAction<string>>
+}
+
 // ----------------------------------------------------------------------
 
-export default function HomeHero() {
+export default function HomeHero({setSearch}: SearchFormProps) {
+
   return (
     <MotionContainer>
       <Container>
@@ -132,6 +137,7 @@ export default function HomeHero() {
             <InputBase
               placeholder='Search for your favorite artist'
               inputProps={{ "aria-label": "Search for your favorite artist" }}
+              onChange={(e) => setSearch(e.target.value)}
               sx={{
                 bgcolor: "common.white",
                 padding: "6px 10px",

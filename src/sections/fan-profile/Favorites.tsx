@@ -45,6 +45,7 @@ export default function Favorites() {
               index={index}
               avatarImg={card.avatarImg}
               twitter={card.twitter}
+              username={card.username}
               points={card.points}
               subscribers={card.subscribers}
             />

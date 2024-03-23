@@ -33,7 +33,7 @@ export default function ArtistCommunityCard({ username, avatarImg }: UserProps) 
           {username}
         </Typography>
         <Typography variant='subtitle2' sx={{ color: "grey.600", textTransform: "capitalize" }}>
-          @{username}
+          @{username?.toLowerCase()}
         </Typography>
       </Stack>
     </Box>

@@ -5,7 +5,7 @@ import { Box, Container, Typography, Stack } from "@mui/material";
 
 import { ArtistCard } from "components/cards";
 import { CARDS } from "data";
-import { useAppSelector } from "../../redux/hooks";
+import { ArtistProps } from "@types";
 
 // ----------------------------------------------------------------------
 
@@ -14,10 +14,14 @@ const ContentStyle = styled("div")(({ theme }) => ({
   backgroundColor: "rgba(248, 248, 248, 1)",
 }));
 
+type ArtistListProps = {
+  trending: ArtistProps[]
+}
+
 // ----------------------------------------------------------------------
 
-export default function Trending() {
-  const artists = useAppSelector((state) => state.artist.artists);
+export default function Trending({trending}: ArtistListProps) {
+  
   return (
     <ContentStyle>
       <Container>
@@ -38,7 +42,7 @@ export default function Trending() {
             },
           }}
         >
-          {artists.slice(0,6).map((card, index) => (
+          {trending.slice(0,6).map((card, index) => (
             <ArtistCard
               key={index}
               bannerImg={card.bannerImg}
