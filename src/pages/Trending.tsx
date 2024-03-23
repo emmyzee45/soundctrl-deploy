@@ -29,11 +29,11 @@ export default function Trending() {
     return b.points - a.points
   });
 
-  const trending: ArtistProps[] = artists?.sort((a,b) => b.subscribedUsers.length - a.subscribedUsers.length);
+  const trending: ArtistProps[] = [...artists]?.sort((a,b) => b.subscribedUsers.length - a.subscribedUsers.length);
 
   useEffect(() => {
     if(search) {
-      setFilterArtist(artists.filter((item) => item.email?.toLowerCase().includes(search.toLowerCase())))
+      setFilterArtist([...artists].filter((item) => item.email?.toLowerCase().includes(search.toLowerCase())))
     }
   }, [search]);
 

@@ -27,14 +27,14 @@ export default function HomePage() {
   const dispatch = useAppDispatch();
 
   const artists = useAppSelector((state) => state.artist.artists);
-  const trending: ArtistProps[] = artists.sort((a,b) => b.subscribedUsers.length - a.subscribedUsers.length);
+  const trending: ArtistProps[] = [...artists].sort((a,b) => b.subscribedUsers.length - a.subscribedUsers.length);
 
   useEffect(() => {
     if(search) {
-      setFilteredArtist(artists.filter((item) => item.username?.toLowerCase().includes(search.toLowerCase())));
+      setFilteredArtist([...artists].filter((item) => item.username?.toLowerCase().includes(search.toLowerCase())));
     }
   }, [search])
-  console.log(search)
+
   useEffect(() => {
     const getArtists = async() => {
       dispatch(getArtistsStart())
@@ -55,7 +55,6 @@ export default function HomePage() {
       dispatch(getFansStart())
       try {
         const res = await makeRequest.get("/users/fans");
-        console.log(res.data)
         dispatch(getFansSuccess(res.data));
       }catch(err) {
         console.log(err);
