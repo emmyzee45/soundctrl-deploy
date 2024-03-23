@@ -1,5 +1,6 @@
 // @mui
 import { styled } from "@mui/material/styles";
+import { useAppSelector } from "../redux/hooks";
 import {
   FanProfileHero,
   Fandoms,
@@ -17,10 +18,11 @@ const RootStyle = styled("div")(({ theme }) => ({
 }));
 
 export default function FanProfile() {
+  const user = useAppSelector((state) => state.user.currentUser);
   return (
     <RootStyle>
-      <FanProfileHero />
-      <ProfileSummary />
+      <FanProfileHero/>
+      <ProfileSummary {...user} />
       <Fandoms />
       <TimeTickets />
       <Favorites />

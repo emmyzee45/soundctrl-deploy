@@ -2,6 +2,7 @@
 import { Typography, Tabs, Tab, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
+import { useAppSelector } from "../redux/hooks";
 import { ProfileSettings, Subscriptions, Notifications } from "sections/fan-settings";
 
 // sections
@@ -50,6 +51,8 @@ function a11yProps(index: number) {
 export default function FanSettings() {
   const [value, setValue] = useState(0);
 
+  const user = useAppSelector((state) => state.user.currentUser);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -78,7 +81,7 @@ export default function FanSettings() {
         </Tabs>
 
         <CustomTabPanel value={value} index={0}>
-          <ProfileSettings />
+          <ProfileSettings {...user} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <Notifications />

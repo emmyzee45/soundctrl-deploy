@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Typography, Grid, Stack } from "@mui/material";
 import { FansCard } from "components/cards";
 import { FANCARDS } from "data";
+import { useAppSelector } from "../../redux/hooks";
 
 const ContentStyle = styled("div")(({ theme }) => ({
   padding: theme.spacing(10, 8),
@@ -11,6 +12,8 @@ const ContentStyle = styled("div")(({ theme }) => ({
 }));
 
 export default function Favorites() {
+  const fans = useAppSelector((state) => state.fans.fans);
+
   return (
     <ContentStyle>
       <Stack spacing={1} direction='row'>
@@ -36,14 +39,14 @@ export default function Favorites() {
         </Typography>
       </Stack>
       <Grid container spacing={3} sx={{ justifyContent: "center", mt: 5 }}>
-        {FANCARDS.map((card, index) => (
+        {fans.map((card, index) => (
           <Grid item key={index}>
             <FansCard
               index={index}
-              avatar={card.avatar}
-              handle={card.handle}
-              count={card.count}
-              fandom={card.fandom}
+              avatarImg={card.avatarImg}
+              twitter={card.twitter}
+              points={card.points}
+              subscribers={card.subscribers}
             />
           </Grid>
         ))}

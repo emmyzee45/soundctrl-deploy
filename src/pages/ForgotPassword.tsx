@@ -62,7 +62,7 @@ export default function Login() {
       setOpenSnackbar(true);
       setSnackbarMessage(true);
       setTimeout(() => {}, 10000);
-      navigate("/create-password")
+      navigate("/code-verification")
     } catch (error) {
       console.error("login failed: ", error);
       setSnackbarMessage(false);

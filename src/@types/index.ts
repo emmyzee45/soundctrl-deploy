@@ -31,3 +31,45 @@ export type ArtistFanCardType = {
   points: string;
   date: string;
 };
+
+export type FileProps = {
+  avatarImg?: string,
+  bannerImg?: string
+}
+
+export interface UserProps {
+  username?: string,
+  email?: string,
+  password?: string,
+  avatarImg?: string,
+  bannerImg?: string,
+  chatprofileImg?: string,
+  createdAt?: string,
+  _id?: string,
+  isArtist?: boolean,
+  subscribers?: string[],
+  desc?: string,
+  twitter?: string,
+  instagram?: string,
+  country?: string,
+  tiktok?: string,
+  birthday?: string,
+  phone?: string,
+  spotify?: string,
+  points?: number,
+  address?: string,
+  apple?: string,
+};
+
+export interface ArtistProps extends UserProps {
+  subscribedUsers: any[],
+}
+
+export interface userState {
+  currentUser: UserProps | null,
+  isFetching: boolean,
+  authenticated: boolean,
+  error: boolean
+}
+
+

@@ -18,16 +18,16 @@ import SectionContainer from "layouts/main/SectionContainer";
 import { PasswordType } from "../@types/auth";
 import { createPasswordSchema } from "utils/validationSchema";
 import { secondaryButtonStyles } from "utils/cssStyles";
-import { AuthContext } from "contexts/JWTContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { makeRequest } from "utils/axios";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
-  const authContext = useContext(AuthContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     register,
@@ -43,13 +43,10 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<PasswordType> = async ({ password }) => {
     try {
-      const response = await authContext;
-
+      const res = await makeRequest.put(`/auth/reset/${location.state.id}`, {password})
       setOpenSnackbar(true);
       setSnackbarMessage(true);
-      navigate("/login");
-
-      console.log(response);
+      res.status === 200 && navigate("/successful");
     } catch (error) {
       console.error("Create Password failed:", error);
       setSnackbarMessage(false);

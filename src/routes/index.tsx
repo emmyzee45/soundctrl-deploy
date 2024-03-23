@@ -1,6 +1,7 @@
 import { Suspense, lazy, ElementType } from "react";
 import { Navigate, useRoutes, useLocation } from "react-router-dom";
 // guards
+import useAuth from "../hooks/useAuth";
 // layouts
 import MainLayout from "../layouts/main";
 // import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
@@ -12,7 +13,8 @@ import MainLayout from "../layouts/main";
 // import { PATH_AFTER_LOGIN } from '../config';
 // components
 import LoadingScreen from "../components/LoadingScreen";
-import { useAppSelector } from "../redux/hooks";
+import CodeVerification from "pages/CodeVerification";
+import SuccessPage from "pages/SuccessPage";
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +23,7 @@ const Loadable = (Component: ElementType) => (props: any) => {
   const { pathname } = useLocation();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const isAuthenticated = useAppSelector((state) => state.user.authenticated);
+  const { isAuthenticated } = useAuth();
 
   const isDashboard = pathname.includes("/dashboard") && isAuthenticated;
 
@@ -81,11 +83,13 @@ export default function Router() {
         { path: "/trending", element: <TrendingPage /> },
         { path: "/book", element: <BookPage /> },
         { path: "/book-time", element: <BookTimePage /> },
-        { path: "/fan-profile", element: <FanProfilePage /> },
+        { path: "/profile", element: <FanProfilePage /> },
         { path: "/fan-settings", element: <FanSettingsPage /> },
         { path: "/login", element: <LoginPage /> },
         { path: "/register", element: <RegisterPage /> },
         { path: "/forgot-password", element: <ForgotPasswordPage /> },
+        { path: "/code-verification", element: <CodeVerification />},        
+        { path: "/successful", element: <SuccessPage /> },
         { path: "/create-password", element: <CreatePasswordPage /> },
       ],
     },

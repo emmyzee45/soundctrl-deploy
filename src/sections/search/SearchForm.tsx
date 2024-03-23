@@ -4,6 +4,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Icon } from "@iconify/react";
 import { Typography, Stack, TextField, InputAdornment, Box, Paper, InputBase } from "@mui/material";
+import { SetStateAction } from "react";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const RootStyle = styled("div")(({ theme }) => ({
   padding: theme.spacing(25, 10),
@@ -12,9 +14,14 @@ const RootStyle = styled("div")(({ theme }) => ({
   overflow: "hidden",
 }));
 
+type SearchFormProps = {
+  setSearch: React.Dispatch<SetStateAction<string>>;
+};
+
 // ----------------------------------------------------------------------
 
-export default function SearchForm() {
+export default function SearchForm({setSearch}: SearchFormProps) {
+
   return (
     <RootStyle>
       <Typography
@@ -44,6 +51,7 @@ export default function SearchForm() {
         <Icon icon='bi:search' color='#000' width='20' height='20' />
         <InputBase
           placeholder=''
+          onChange={(e) => setSearch(e.target.value)}
           inputProps={{ "aria-label": "Subscribe" }}
           sx={{
             bgcolor: "common.white",

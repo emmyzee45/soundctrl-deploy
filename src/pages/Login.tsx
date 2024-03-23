@@ -44,7 +44,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/trending";
   const user = useAppSelector((state) => state.user.currentUser);
 
   const {

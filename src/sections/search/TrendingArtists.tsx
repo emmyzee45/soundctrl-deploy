@@ -3,6 +3,8 @@ import { ArtistCommunityCard } from "components/cards";
 // @mui
 import { styled } from "@mui/material/styles";
 import { COMMUNITYCARDS } from "data";
+import { useAppSelector } from "../../redux/hooks";
+import { ArtistProps, UserProps } from "@types";
 
 const ContentStyle = styled("div")(({ theme }) => ({
   // overflow: "hidden",
@@ -11,7 +13,12 @@ const ContentStyle = styled("div")(({ theme }) => ({
   padding: theme.spacing(2, 10),
 }));
 
-export default function TrendingArtists() {
+type ArtistListProps = {
+  trending: ArtistProps[]
+}
+
+export default function TrendingArtists({trending}: ArtistListProps) {
+
   return (
     <ContentStyle>
       <Typography
@@ -27,9 +34,9 @@ export default function TrendingArtists() {
         Trending Communities
       </Typography>
       <Grid container spacing={2} sx={{ my: 5, justifyContent: "center", width: "100%" }}>
-        {COMMUNITYCARDS.map((card, index) => (
+        {trending.slice(0,6).map((card, index) => (
           <Grid item key={index}>
-            <ArtistCommunityCard image={card.image} name={card.name} handle={card.handle} />
+            <ArtistCommunityCard avatarImg={card.avatarImg} username={card.username} />
           </Grid>
         ))}
       </Grid>

@@ -1,14 +1,14 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { ArtistCardType } from "@types";
+import { ArtistCardType, UserProps } from "@types";
 import Avatar from "components/Avatar";
 import Image from "components/Image";
 import { primaryButtonStyles } from "utils/cssStyles";
 
-const ArtistCard = ({ image, avatar, name, handle }: ArtistCardType) => {
+const ArtistCard = ({ bannerImg, avatarImg, username }: UserProps) => {
   return (
     <Box sx={{ bgcolor: "rgba(237, 237, 237, 1)", borderRadius: 2, cursor: "pointer" }}>
       <Stack direction='row' spacing={3}>
-        <Image src={image} alt='artist' sx={{ borderRadius: 2 }} />
+        <Image src={bannerImg} alt='artist' sx={{ borderRadius: 2 }} />
         <Stack sx={{ padding: 2 }}>
           <Box>
             <Typography variant='h5' sx={{ color: "common.black", textTransform: "uppercase" }}>
@@ -45,13 +45,13 @@ const ArtistCard = ({ image, avatar, name, handle }: ArtistCardType) => {
         }}
       >
         <Stack direction='row' spacing={1}>
-          <Avatar src={avatar} alt='artist avatar' />
+          <Avatar src={avatarImg} alt='artist avatar' />
           <Box>
             <Typography variant='subtitle1' sx={{ color: "common.black" }}>
-              {name}
+              {username}
             </Typography>
             <Typography variant='subtitle2' sx={{ color: "grey.800" }}>
-              {handle}
+              @{username}
             </Typography>
           </Box>
         </Stack>
